@@ -1,0 +1,23 @@
+<h1>Users!</h1>
+<ul>
+  <% @users.each do |user| %>
+    <li>
+      <%= user.name %> (<%= user.email %>)
+      <% if user.is_admin %>
+      👑
+      <% else %>
+      👶
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+
+<%= form_for User.new do |f| %>
+  <p><%= f.label :name, "Name" %><%= f.text_field :name %></p>
+  <p><%= f.label :email, "Email" %><%= f.email_field :email %></p>
+  <p><%= f.label :password, "Password" %><%= f.password_field :password %></p>
+  <p><%= f.label :password_confirmation, "Confirm Password" %><%= f.password_field :password_confirmation %></p>
+  <p><%= f.submit %></p>
+<% end %>
+
+<p><%= link_to 'Admin', :admin %></p>
